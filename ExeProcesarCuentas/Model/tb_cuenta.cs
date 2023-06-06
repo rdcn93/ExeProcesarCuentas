@@ -8,18 +8,14 @@ using System.Threading.Tasks;
 
 namespace ExeProcesarCuentas.Model
 {
-    [Table("tb_tarjeta")]
-    internal class tb_tarjeta
+    [Table("tb_cuenta")]
+    internal class tb_cuenta
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public string descripcion { get; set; }
-        public int idBanco { get; set; }
-        public int idPropietario { get; set; }
-        public string numero { get; set; }
-        public DateTime fechaVencimiento { get; set; }
-        public int idTipoTarjeta { get; set; }
-        public decimal lineaCredito { get; set; }
+        public int idTarjeta { get; set; }
+        public int idMoneda { get; set; }
     }
 }

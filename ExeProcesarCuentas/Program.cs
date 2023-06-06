@@ -2,6 +2,7 @@
 using ClosedXML.Excel;
 using ExeProcesarCuentas;
 using ExeProcesarCuentas.Data;
+using ExeProcesarCuentas.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -13,20 +14,19 @@ var configBuilder = new ConfigurationBuilder().
    AddJsonFile("appsettings.json").Build();
 
 var excelFilePath = configBuilder.GetSection("Paths:ExcelFilePath").Value;
+Cuentas cuentasClass = new Cuentas();
+List<tb_moneda> lstMonedas = new List<tb_moneda>();
+List<tb_pais> lstPaises = new List<tb_pais>();
 
-//var cuentasDbOptions = new DbContextOptionsBuilder<CuentasContext>()
-//    .UseSqlServer(configBuilder.GetConnectionString("DevConnection"))
-//    .Options;
+var cuentasDbOptions = new DbContextOptionsBuilder<CuentasContext>()
+    .UseSqlServer(configBuilder.GetConnectionString("DevConnection"))
+    .Options;
 
-//using (var cuentasDbContext = new CuentasContext(cuentasDbOptions))
-//{
-//    var persons = cuentasDbContext.monedas.ToList();
-
-//    foreach (var person in persons)
-//    {
-//        Console.WriteLine($"Hello {person.descripcion}");
-//    }
-//}
+using (var cuentasDbContext = new CuentasContext(cuentasDbOptions))
+{
+    lstMonedas = cuentasDbContext.monedas.ToList();
+    lstPaises = cuentasDbContext.paises.ToList();
+}
 
 //Read excel
 //using var wbook = new XLWorkbook(excelFilePath);
@@ -47,6 +47,7 @@ using (XLWorkbook workBook = new XLWorkbook(excelFilePath))
 
         //Loop through the Worksheet rows.
         bool firstRow = true;
+        int linea = 1;
         foreach (IXLRow row in workSheet.Rows())
         {
             if (firstRow)
@@ -55,21 +56,29 @@ using (XLWorkbook workBook = new XLWorkbook(excelFilePath))
             }
             else
             {
-                decimal solesDecimal = row.Cell(3).Value.ToString().IsNullOrEmpty() ? Convert.ToDecimal("0.00") : Convert.ToDecimal(row.Cell(3).Value.ToString());
-                decimal dolaresDecimal = row.Cell(4).Value.ToString().IsNullOrEmpty() ? Convert.ToDecimal("0.00") : Convert.ToDecimal(row.Cell(4).Value.ToString());
+                int mes = row.Cell(1).Value.ToString().IsNullOrEmpty() ? 0 : Convert.ToInt32(row.Cell(1).Value.ToString());
+                int año = row.Cell(2).Value.ToString().IsNullOrEmpty() ? 0 : Convert.ToInt32(row.Cell(2).Value.ToString());
 
-                bool cuotasBool = row.Cell(5).Value.ToString().IsNullOrEmpty() ? false : true;
-                bool seguroBool = row.Cell(6).Value.ToString().IsNullOrEmpty() ? false : true;
+                decimal solesDecimal = row.Cell(5).Value.ToString().IsNullOrEmpty() ? Convert.ToDecimal("0.00") : Convert.ToDecimal(row.Cell(5).Value.ToString());
+                decimal dolaresDecimal = row.Cell(6).Value.ToString().IsNullOrEmpty() ? Convert.ToDecimal("0.00") : Convert.ToDecimal(row.Cell(6).Value.ToString());
+
+                bool cuotasBool = row.Cell(7).Value.ToString().IsNullOrEmpty() ? false : true;
+                bool seguroBool = row.Cell(8).Value.ToString().IsNullOrEmpty() ? false : true;
 
                 movimientos.Add(new Movimiento()
                 {
-                    Banco = row.Cell(1).Value.ToString(),
-                    Descripcion = row.Cell(2).Value.ToString(),
+                    Mes = mes,
+                    Año = año,
+                    Linea = linea,
+                    Banco = row.Cell(3).Value.ToString(),
+                    Descripcion = row.Cell(4).Value.ToString(),
                     Soles = solesDecimal,
                     Dolares = dolaresDecimal,
                     Cuotas = cuotasBool,
                     Seguro = seguroBool
                 });
+
+                linea++;
             }
         }
     }
@@ -77,5 +86,6 @@ using (XLWorkbook workBook = new XLWorkbook(excelFilePath))
 
 foreach (var mov in movimientos)
 {
+    var resultProces = cuentasClass.ProcesarDescripcion(mov);
     Console.WriteLine($"Mov: soles: {mov.Soles}, dolares: {mov.Dolares}");
 }

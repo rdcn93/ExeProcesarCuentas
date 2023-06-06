@@ -15,8 +15,15 @@ namespace ExeProcesarCuentas.Data
         public CuentasContext(DbContextOptions<CuentasContext> options) : base(options)
         {
         }
-        public DbSet<tb_moneda> monedas { get; set; }
 
+        public DbSet<tb_moneda> monedas { get; set; }
+        public DbSet<tb_pais> paises { get; set; }
+        public DbSet<tb_categoria> categorias { get; set; }
+        public DbSet<tb_movimiento> movimientos { get; set; }
+        public DbSet<tb_persona> personas { get; set; }
+        public DbSet<tb_tarjeta> tarjetas { get; set; }
+        public DbSet<tb_tarjeta_periodo> periodos { get; set; }
+        public DbSet<tb_cuenta> cuentas { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

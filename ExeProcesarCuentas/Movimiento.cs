@@ -8,6 +8,9 @@ namespace ExeProcesarCuentas
 {
     internal class Movimiento
     {
+        public int Mes { get; set; }
+        public int Año { get; set; }
+        public int Linea { get; set; }
         public string Banco { get; set; }
         public string Descripcion { get; set; }
         public decimal Soles { get; set; }

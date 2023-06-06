@@ -9,7 +9,11 @@ go
 
 --insert into tb_pais values('Perú'), ('Estados Unidos')
 
---insert into tb_banco values ('BCP', 1),('Interbank',1),('BBVA',1),('Diners Club', 1)
+--insert into tb_banco values ('BCP', 1, 'BCP'),('Interbank',1, 'INTERBANK'),('BBVA',1, 'BBVA'),('Diners Club', 1, 'DINERS')
+
+--insert into tb_tarjeta_tipo values
+--('Débito'),
+--('Crédito')
 
 --INSERT INTO [dbo].[tb_persona]
 --     VALUES
@@ -27,3 +31,13 @@ go
 --('',2,1,'',GETDATE()),
 --('',3,1,'',GETDATE()),
 --('',4,1,'',GETDATE())
+
+--,[idTarjeta]
+--      ,[diaInicio]
+--      ,[diaCorte]
+--      ,[minDiaPago]
+--      ,[maxDiaPago]
+--      ,[estado]
+
+--INSERT INTO tb_periodo_configuracion values
+--(1,27,26,27,21)
