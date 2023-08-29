@@ -15,22 +15,19 @@ go
 --('Débito'),
 --('Crédito')
 
---INSERT INTO [dbo].[tb_persona]
---     VALUES
---           ('Raul',
---           'Dario',
---           'Castañeda',
---           'Najar',
---           '',
---           '',
---           '',
---           '')
+--INSERT INTO [dbo].[tb_persona] VALUES ('Raul', 'Dario', 'Castañeda', 'Najar', '', '', '', '')
+--INSERT INTO [dbo].[tb_persona] VALUES ('Jesus', 'Enrique', 'Castañeda', 'Najar', '', '', '', '')
+--INSERT INTO [dbo].[tb_persona] VALUES ('Jack', 'Enamuel', 'Garcia', 'Castañeda', '', '', '', '')
+--INSERT INTO [dbo].[tb_persona] VALUES ('Raul', '', 'Castañeda', 'Achuy', '', '', '', '')
+--INSERT INTO [dbo].[tb_persona] VALUES ('Jean', 'Deynis', 'Valenzuela', 'Najar', '', '', '', '')
+--INSERT INTO [dbo].[tb_persona] VALUES ('Swan', '', 'Alaca', 'Najar', '', '', '', '')
+--INSERT INTO [dbo].[tb_persona] VALUES ('Rosamaria', 'Yaneth', 'Rodriguez', 'Chabasunco', '', '', '', '')
 
 --insert into tb_tarjeta values
---('',1,1,'',GETDATE()),
---('',2,1,'',GETDATE()),
---('',3,1,'',GETDATE()),
---('',4,1,'',GETDATE())
+--('Bcp Visa',1,1,'',GETDATE()),
+--('Interbank Visa Platinium',2,1,'',GETDATE()),
+--('BBVA Signature',3,1,'',GETDATE()),
+--('Diners Club',4,1,'',GETDATE())
 
 --,[idTarjeta]
 --      ,[diaInicio]
@@ -40,4 +37,7 @@ go
 --      ,[estado]
 
 --INSERT INTO tb_periodo_configuracion values
---(1,27,26,27,21)
+--(1,27,26,27,21,1,0),
+--(2,10,11,27,21,1,1),
+--(3,21,20,27,21,1,0),
+--(4,27,26,27,21,1,0)

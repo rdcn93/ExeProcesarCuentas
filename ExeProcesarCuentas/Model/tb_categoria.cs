@@ -13,6 +13,6 @@ namespace ExeProcesarCuentas.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public string descripcion { get; set; }
-        public int idCategoriaPadre { get; set; }
+        public int? idCategoriaPadre { get; set; }
     }
 }

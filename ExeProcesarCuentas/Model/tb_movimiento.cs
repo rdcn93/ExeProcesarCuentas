@@ -20,11 +20,11 @@ namespace ExeProcesarCuentas.Model
         public int nroCuotas { get; set; }
         public int idTarjeta { get; set; }
         public int idMoneda { get; set; }
-        public int idPais { get; set; }
-        public int idCategoria { get; set; }
-        public int idPersonaMovimiento { get; set; }
-        public int idPeriodo { get; set; }
-        public int idCuenta { get; set; }
+        public int? idPais { get; set; }
+        public int? idCategoria { get; set; }
+        public int? idPersonaMovimiento { get; set; }
+        public int? idPeriodo { get; set; }
+        public int? idCuenta { get; set; }
         public bool esDevagramen { get; set; }
     }
 }

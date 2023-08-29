@@ -16,5 +16,6 @@ namespace ExeProcesarCuentas.Model
         public int id { get; set; }
         public string descripcion { get; set; }
         public int idPais { get; set; }
+        public string abreviatura { get; set; }
     }
 }

@@ -20,6 +20,6 @@ namespace ExeProcesarCuentas.Model
         public string numero { get; set; }
         public DateTime fechaVencimiento { get; set; }
         public int idTipoTarjeta { get; set; }
-        public decimal lineaCredito { get; set; }
+        public decimal? lineaCredito { get; set; }
     }
 }

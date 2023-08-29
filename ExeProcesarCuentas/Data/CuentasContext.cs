@@ -20,10 +20,13 @@ namespace ExeProcesarCuentas.Data
         public DbSet<tb_pais> paises { get; set; }
         public DbSet<tb_categoria> categorias { get; set; }
         public DbSet<tb_movimiento> movimientos { get; set; }
+        public DbSet<tb_movimiento_cuota> movimientoCuotas { get; set; }
         public DbSet<tb_persona> personas { get; set; }
         public DbSet<tb_tarjeta> tarjetas { get; set; }
         public DbSet<tb_tarjeta_periodo> periodos { get; set; }
         public DbSet<tb_cuenta> cuentas { get; set; }
+        public DbSet<tb_banco> bancos { get; set; }
+        public DbSet<tb_periodo_configuracion> periodosConfiguracion { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
@@ -32,11 +35,11 @@ namespace ExeProcesarCuentas.Data
 
         //}
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    base.OnConfiguring(optionsBuilder);
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
 
-        //    optionsBuilder.EnableSensitiveDataLogging();
-        //}
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
     }
 }
